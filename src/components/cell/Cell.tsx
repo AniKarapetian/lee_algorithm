@@ -14,7 +14,7 @@ type CellProps = {
 type Style = { [key: string]: string };
 
 const Cell: React.FC<CellProps> = ({ data, onClick }) => {
-  const values = [-1, 0, 1, data.targetValue];
+  const values = [-2, -1, 0, 1, data.targetValue];
   const backgroundColors: Style = {
     "0": "white",
     "1": "red",
@@ -35,7 +35,13 @@ const Cell: React.FC<CellProps> = ({ data, onClick }) => {
         backgroundColor: backgroundColors[String(data.value)] || "lightblue",
       }}
     >
-      {data.value}
+      <span
+        style={{
+          visibility: !values.includes(data.value) ? "visible" : "hidden",
+        }}
+      >
+        {data.value}
+      </span>
     </div>
   );
 };
